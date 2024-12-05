@@ -1,0 +1,18 @@
+{
+  "name": "injazmain",
+  "repository": "https://github.com/kumarpint00/injazMain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm-run-all --parallel install-backend install-frontend ",
+    "start": "npm-run-all --parallel start-backend start-frontend",
+    "install-backend": "cd apiService && npm install -f",
+    "install-frontend": "cd portal && npm install -f",
+    "start-backend": "cd server && npm start",
+    "start-frontend": "cd portal && npm run dev"
+  },
+  "keywords": [],
+  "author": "kumarpint00",
+  "license": "ISC"
+}
