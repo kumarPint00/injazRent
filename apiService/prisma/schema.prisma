@@ -1,0 +1,224 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // You can change this to your preferred database
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String        @unique
+  password    String
+  phoneNumber String
+  address     String
+  city        String
+  locality    String
+  area        String
+  zipcode     String
+  inquiries   CarInquiry[]
+  comments    Comment[]     // If you have comments related to users
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Car {
+  id                         Int                     @id @default(autoincrement())
+  name                       String
+  brand                      String
+  model                      String
+  carModel                   CarModel?              @relation(fields: [carModelId], references: [id])
+  carModelId                 Int?
+  interiorColor              String
+  exteriorColor              String
+  category                   Category                @relation(fields: [categoryId], references: [id])
+  categoryId                 Int
+  year                       String
+  image                      String
+  externalImage              String[]
+  internalImage              String[]
+  location                   CarLocation             @relation(fields: [locationId], references: [id])
+  locationId                 Int
+  vehicleType                String
+  featuredCar                Boolean                 @default(false)
+  status                     String
+  services                   CarService[]            @relation("CarServices")
+  description                String
+  actualPriceDaily           Float
+  discountedPriceDaily       Float
+  actualPriceWeekly          Float
+  discountedPriceWeekly      Float
+  actualPriceMonthly         Float
+  discountedPriceMonthly     Float
+  transmission               String
+  cruiseControl              Boolean
+  engineCapacity             String
+  luggageBootCapacity        String
+  securityDeposit            Float
+  cashType                   String[]
+  carFeatures                CarFeature[]            @relation("CarFeatures")
+  unlimitedMileage           Boolean
+  paiInsuranceDaily          Float
+  paiInsuranceMonthly        Float
+  freeCancellation           Boolean
+  freeDelivery30DaysandAbove Boolean
+  customerSupport            String
+  scdwPerMonth               Float
+  paymentType                String
+  engineSize                 String
+  bluetooth                  Boolean
+  aux                        Boolean
+  seater                     Int
+  navigation                 Boolean
+  parkingSense               Boolean
+  requirementsForUAEResidents String[]
+  requirementsForTourists     String[]
+  appleCarPlay               Boolean
+  isoFix                     Boolean
+  sunRoof                    Boolean
+  pushButton                 Boolean
+  lcd                        Boolean
+  rearCamera                 Boolean
+  engineCapacities           CarEngineCapacity[]
+  documents                  CarDocument[]
+  inquiries                  CarInquiry[]
+  images                     CarImage[]
+  createdAt                  DateTime                @default(now())
+  updatedAt                  DateTime                @updatedAt
+}
+
+model CarImage {
+  id        Int    @id @default(autoincrement())
+  car       Car    @relation(fields: [carId], references: [id])
+  carId     Int
+  imageUrl  String
+  imageType String
+  createdAt DateTime @default(now())
+}
+
+model CarInquiry {
+  id                Int      @id @default(autoincrement())
+  bookingId         String   @unique
+  name              String
+  carName           String
+  startDate         DateTime
+  isNewCar          Boolean
+  endDate           DateTime
+  pickUpLoc         String
+  dropLocation      String
+  phoneNumber       String
+  message           String
+  deliveryMode      String
+  email             String
+  packages          String
+  brand             String
+  model             String
+  status            String
+  pickupTime        DateTime
+  dropTime          DateTime
+  statusMessage     String
+  statusChangedBy   String
+  bookingCreated    DateTime? @default(now())
+  bookingUpdated    DateTime? @updatedAt
+  user              User     @relation(fields: [userId], references: [id])
+  userId            Int
+  car               Car      @relation(fields: [carId], references: [id])
+  carId             Int
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model CarEngineCapacity {
+  id          Int      @id @default(autoincrement())
+  capacity    String
+  status      String?
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+  car         Car      @relation(fields: [carId], references: [id])
+  carId       Int
+}
+
+model CarDocument {
+  id          Int      @id @default(autoincrement())
+  title       String
+  status      String?
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+  car         Car      @relation(fields: [carId], references: [id])
+  carId       Int
+}
+
+model FAQ {
+  id          Int      @id @default(autoincrement())
+  question    String
+  answer      String?
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+  status      String
+}
+
+model CarLocation {
+  id          Int      @id @default(autoincrement())
+  name        String
+  status      String?
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+  cars        Car[]
+}
+
+model CarModel {
+  id          Int      @id @default(autoincrement())
+  name        String
+  brand       String
+  status      String?
+  slug        String?
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  cars        Car[]
+}
+
+model CarService {
+  id          Int      @id @default(autoincrement())
+  title       String
+  status      String?
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+  cars        Car[]    @relation("CarServices")
+}
+
+model Category {
+  id          Int         @id @default(autoincrement())
+  name        String
+  status      String
+  slug        String
+  createdDate DateTime    @default(now())
+  updatedDate DateTime    @updatedAt
+  models      CarModel[]
+  cars        Car[]
+}
+
+model CarFeature {
+  id          Int      @id @default(autoincrement())
+  title       String
+  status      String?
+  createdDate DateTime @default(now())
+  updatedDate DateTime @updatedAt
+  cars        Car[]    @relation("CarFeatures")
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
