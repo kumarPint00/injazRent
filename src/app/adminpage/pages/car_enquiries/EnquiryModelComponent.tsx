@@ -219,7 +219,7 @@ const EnquiryModelComponent = ({
         // window.location.reload();
         handleClose();
         router.push(
-          "/adminpage/pages/car_enquiries/enquiryStatus/acceptedEnquiry"
+          "/pages/adminAcceptedEnquiries"
         );
       }
     } catch (error) {
@@ -266,7 +266,7 @@ const EnquiryModelComponent = ({
       if (response.data.status === 200) {
         // window.location.reload();
         router.push(
-          "/adminpage/pages/car_enquiries/enquiryStatus/rejectedEnquiry"
+          "/pages/adminRejectedEnquiries"
         );
         console.log(response.data);
         handleClose();
