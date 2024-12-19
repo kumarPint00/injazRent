@@ -9,10 +9,12 @@ import { serverUrl } from "@/utils/helper";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import drawerLogo from "../../../../../public/injaz white colour logowebp.webp";
+import PhoneForwardedIcon from "@mui/icons-material/PhoneForwarded";
 
 // ** mui Imports **
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   CssBaseline,
@@ -22,7 +24,10 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Menu,
+  MenuItem,
   Toolbar,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -50,6 +55,14 @@ function Navbar(props: Props) {
   const [location, setLocation] = useState([]);
   const [drop, setdrop] = useState([]);
   const [cat, setCat] = useState([]);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleWhatsappClick = () => {
     const message = encodeURIComponent(
@@ -184,11 +197,7 @@ function Navbar(props: Props) {
         }}
         onClick={() => router.push("/")}
       >
-        <Image
-          src={drawerLogo}
-          alt="logo"
-          className="drawerImg"
-        />
+        <Image src={drawerLogo} alt="logo" className="drawerImg" />
       </Box>
       <Divider />
       {customCollapsibleListItemArray.map((item) => (
@@ -312,6 +321,81 @@ function Navbar(props: Props) {
                 display: "flex",
               }}
             >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "center",
+                }}
+              >
+                <Tooltip title="Call Us">
+                  <IconButton
+                    onClick={handleClick}
+                    size="small"
+                    sx={{
+                      marginRight: "1rem",
+                      backgroundColor: "white",
+                      "&:hover": { backgroundColor: "white" },
+                    }}
+                    aria-controls={open ? "account-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                  >
+                    <CallIcon sx={{ color: "#01437d" }} />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+              <Menu
+                anchorEl={anchorEl}
+                id="account-menu"
+                open={open}
+                onClose={handleClose}
+                onClick={handleClose}
+                slotProps={{
+                  paper: {
+                    elevation: 0,
+                    sx: {
+                      overflow: "visible",
+                      filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                      mt: 1.5,
+                      "& .MuiAvatar-root": {
+                        width: 32,
+                        height: 32,
+                        ml: -0.5,
+                        mr: 1,
+                      },
+                      "&::before": {
+                        content: '""',
+                        display: "block",
+                        position: "absolute",
+                        top: 0,
+                        bgcolor: "background.paper",
+                        transform: "translateY(-50%) rotate(45deg)",
+                        zIndex: 0,
+                      },
+                    },
+                  },
+                }}
+                transformOrigin={{ horizontal: "center", vertical: "top" }} 
+                anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+              >
+                <MenuItem
+                  onClick={() => {
+                    window.location.href = "tel:+971509961569";
+                    handleClose();
+                  }}
+                >
+                  +971509961569
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    window.location.href = "tel:+971503755886";
+                    handleClose();
+                  }}
+                >
+                  +971503755886
+                </MenuItem>
+              </Menu>
               <Button
                 onClick={() => router.push("/pages/login")}
                 sx={{
