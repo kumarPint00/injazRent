@@ -732,6 +732,9 @@ const CreatedCar = () => {
     setExpanded((prev) => !prev);
   };
 
+  const fullInsuranceText =
+    "What is full insurance? Full Insurance covers everything without an excess charge - even if you are deemed at fault, as long as corresponding police report is submitted.";
+
   return (
     <>
       <NavFooter />
@@ -1043,7 +1046,7 @@ const CreatedCar = () => {
                             <Tooltip
                               title={
                                 item.monthText === "Full Cover"
-                                  ? "What is full insurance? Full Insurance covers everything without an excess charge - even if you are deemed at fault, as long as corresponding police report is submitted."
+                                  ? fullInsuranceText
                                   : ""
                               }
                             >
