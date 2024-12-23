@@ -8,6 +8,7 @@ import {
   IconButton,
   Tabs,
   TextField,
+  Tooltip,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -275,12 +276,13 @@ const CreatedCar = () => {
     setSelectedInsuarance(insurancePrice); // update selected price
     setInsuranceBoxColor(monthText);
     setInsuDailyWeekly(
-      monthText === "Full Cover" ?(
-      daysWeeks === "days"
-        ? parseFloat(data?.cdwDaily ?? 0)
-        : daysWeeks === "weeks"
-        ? parseFloat(data?.cdwWeekly ?? 0)
-        : 0) : 0
+      monthText === "Full Cover"
+        ? daysWeeks === "days"
+          ? parseFloat(data?.cdwDaily ?? 0)
+          : daysWeeks === "weeks"
+          ? parseFloat(data?.cdwWeekly ?? 0)
+          : 0
+        : 0
     );
   };
   const handleSelectedDaysBoxClick = (
@@ -730,6 +732,9 @@ const CreatedCar = () => {
     setExpanded((prev) => !prev);
   };
 
+  const fullInsuranceText =
+    "What is full insurance? Full Insurance covers everything without an excess charge - even if you are deemed at fault, as long as corresponding police report is submitted.";
+
   return (
     <>
       <NavFooter />
@@ -1037,12 +1042,22 @@ const CreatedCar = () => {
                                 : "white",
                           }}
                         >
-                          <MonthlyTypo1 variant="subtitle1">
-                            {item.monthText}
-                          </MonthlyTypo1>
-                          <MonthlyTypo2 variant="subtitle2">
-                            {item.savingAmount}
-                          </MonthlyTypo2>
+                          <>
+                            <Tooltip
+                              title={
+                                item.monthText === "Full Cover"
+                                  ? fullInsuranceText
+                                  : ""
+                              }
+                            >
+                              <MonthlyTypo1 variant="subtitle1">
+                                {item.monthText}
+                              </MonthlyTypo1>
+                            </Tooltip>
+                            <MonthlyTypo2 variant="subtitle2">
+                              {item.savingAmount}
+                            </MonthlyTypo2>
+                          </>
                         </DailyWeeklyBox1>
                       </Grid>
                     ))}
