@@ -59,11 +59,13 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
                 {menuItems.map((item, index) => (
                   <li
                     key={index}
-                    onClick={
-                      item.sectionId
-                        ? () => scrollToSection(item.sectionId)
-                        : undefined
-                    }
+                    onClick={() => {
+                      if (item.label === "About Us") {
+                        router.push("/pages/aboutUs");
+                      } else if (item.sectionId) {
+                        scrollToSection(item.sectionId);
+                      }
+                    }}
                   >
                     {item.label}
                   </li>
