@@ -129,7 +129,7 @@ interface getCarData {
   cdwDaily: string;
   cdwWeekly: string;
   cdwMonthly: string;
-  keyFeatures: string[];
+  keyFeatures: any;
   deliveryChargeDaily: string;
   deliveryChargeWeekly: string;
   deliveryChargeMonthly: string;
@@ -448,7 +448,13 @@ const CreatedCar = () => {
     },
     {
       monthText: "Full Cover",
-      savingAmount: `+ AED ${dailyWeekly=== "monthly" ? parseFloat(data?.cdwMonthly) : dailyWeekly === "dailyAndWeekly"?parseFloat(data?.cdwDaily):""}/Month`,
+      savingAmount: `+ AED ${
+        dailyWeekly === "monthly"
+          ? parseFloat(data?.cdwMonthly)
+          : dailyWeekly === "dailyAndWeekly"
+          ? parseFloat(data?.cdwDaily)
+          : ""
+      }/Month`,
       price: parseFloat(data?.cdwMonthly),
     },
   ];
@@ -845,13 +851,19 @@ const CreatedCar = () => {
                         ))}
                       </TabPanel>
                       <TabPanel value={value} index={1} dir={theme.direction}>
-                        {data?.keyFeatures.slice(1).map((item, index) => (
-                          <HighlightBox key={index}>
-                            <HightlightTypo variant="subtitle1">
-                              {item}
-                            </HightlightTypo>
-                          </HighlightBox>
-                        ))}
+                        {(Array.isArray(data?.keyFeatures)
+                          ? data?.keyFeatures
+                          : data?.keyFeatures?.split(",") || []
+                        )
+                          .slice(1)
+                          .filter(Boolean)
+                          .map((item: any, index: any) => (
+                            <HighlightBox key={index}>
+                              <HightlightTypo variant="subtitle1">
+                                {item}
+                              </HightlightTypo>
+                            </HighlightBox>
+                          ))}
                       </TabPanel>
                       <TabPanel value={value} index={2} dir={theme.direction}>
                         {technicalDetails.map((item) => (
