@@ -448,7 +448,7 @@ const CreatedCar = () => {
     },
     {
       monthText: "Full Cover",
-      savingAmount: `+ AED ${parseFloat(data?.cdwMonthly)}/Month`,
+      savingAmount: `+ AED ${dailyWeekly=== "monthly" ? parseFloat(data?.cdwMonthly) : dailyWeekly === "dailyAndWeekly"?parseFloat(data?.cdwDaily):""}/Month`,
       price: parseFloat(data?.cdwMonthly),
     },
   ];
