@@ -92,7 +92,11 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
               <h4>LEGAL</h4>
               <ul>
                 {legal.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li key={index} onClick={() => {
+                    if (item === "Terms & Conditions") {
+                      router.push("/pages/termsAndcondition");
+                    }
+                  }}>{item}</li>
                 ))}
               </ul>
             </div>
