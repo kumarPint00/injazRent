@@ -74,6 +74,9 @@ function Navbar(props: Props) {
   const handlePhoneClick = () => {
     window.open(`tel:${data?.phoneNumber}`, "_blank");
   };
+  const handlePhoneClick2 = () => {
+    window.open(`tel:+971503755886`, "_blank");
+  };
 
   const handleMailClick = () => {
     (window.location.href = `mailto:${data?.email}`), "_blank";
@@ -256,6 +259,26 @@ function Navbar(props: Props) {
         <ListItemText
           sx={{ color: "black", fontWeight: "600" }}
           primary={data?.phoneNumber}
+        />
+      </ListItemButton>
+      <ListItemButton
+        onClick={() => {
+          handlePhoneClick2();
+          handleDrawerToggle();
+        }}
+        className="list_item_text"
+      >
+        <ListItemIcon sx={{ minWidth: "25px" }}>
+          <CallIcon
+            sx={{
+              color: "#01437d",
+              fontSize: "20px",
+            }}
+          />
+        </ListItemIcon>
+        <ListItemText
+          sx={{ color: "black", fontWeight: "600" }}
+          primary="+971503755886"
         />
       </ListItemButton>
       <ListItemButton
