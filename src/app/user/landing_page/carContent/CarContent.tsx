@@ -57,7 +57,7 @@ const CarContent: React.FC<CarContentType> = ({ data = [], phoneData }) => {
     <div className="car_offers">
       <Container maxWidth="lg">
         {!loader ? (
-          <Grid container spacing={6}>
+          <Grid container spacing={6} sx={{justifyContent: 'center'}}>
             {data.map((car: any) => (
               <Grid
                 item
