@@ -1,6 +1,6 @@
 "use client";
-import { CardActionArea, CardMedia, Container, Grid } from "@mui/material";
 import React from "react";
+import { Box, CardActionArea, CardMedia, Container, Grid } from "@mui/material";
 import "../footer/footer.css";
 import {
   cities,
@@ -37,18 +37,23 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
               />
             </CardActionArea>
             <p className="foot_text">
-              INJAZ is the first-ever global car rental and leasing marketplace.
-              We work with 200+ local car rental companies in Dubai. You can
-              choose among their 2000+ verified cars to find the best rental car
-              for you.
+              INJAZ RENT A CAR can sometimes seem overwhelming with its numerous
+              considerations. At Quick Lease Car Rentals, we aim to eliminate
+              the confusion by offering a simple and hassle-free leasing
+              process.
             </p>
             <div className="foot_icons">
               <Grid container>
-                {socialMediaLinks.map((item, index) => (
-                  <Grid key={index} item xs={2.4} sm={2.4} md={2.4} lg={2.4}>
-                    <img src={item.src} alt={item.alt} onClick={item.onClick} />
-                  </Grid>
-                ))}
+                <Box className="footer_social_media_images">
+                  {socialMediaLinks.map((item, index) => (
+                    <img
+                      key={index}
+                      src={item.src}
+                      alt={item.alt}
+                      onClick={item.onClick}
+                    />
+                  ))}
+                </Box>
               </Grid>
             </div>
           </Grid>
@@ -78,11 +83,14 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
               <h4>TOP CITIES</h4>
               <ul>
                 {cities.map((item, index) => (
-                  <li key={index} onClick={() =>
-                    router.push(
-                      `/pages/carWithLocation?location=${item}`
-                    )
-                  }>{item}</li>
+                  <li
+                    key={index}
+                    onClick={() =>
+                      router.push(`/pages/carWithLocation?location=${item}`)
+                    }
+                  >
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -92,11 +100,16 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
               <h4>LEGAL</h4>
               <ul>
                 {legal.map((item, index) => (
-                  <li key={index} onClick={() => {
-                    if (item === "Terms & Conditions") {
-                      router.push("/pages/termsAndcondition");
-                    }
-                  }}>{item}</li>
+                  <li
+                    key={index}
+                    onClick={() => {
+                      if (item === "Terms & Conditions") {
+                        router.push("/pages/termsAndcondition");
+                      }
+                    }}
+                  >
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>

@@ -18,11 +18,7 @@ const handleInstagramClick = () => {
   };
 
 export const socialMediaLinks = [
-    {
-      src: "/facebookwebp.webp",
-      alt: "facebook",
-      onClick: handleFacebookClick,
-    },
+   
     {
       src: "/socialmediawebp (1).webp",
       alt: "google",
