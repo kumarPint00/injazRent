@@ -73,3 +73,21 @@ export const socialMediaLinks = [
     { label: "Vehicle", sectionId: "carWithBrandID" },
     { label: "FAQs", sectionId: "accordion" },
   ];
+
+  export const dailyWeeklyButton = [
+    {
+      name: "Daily",
+      route: "daily=daily",
+      subs: "dailyAndWeekly",
+    },
+    {
+      name: "Weekly",
+      route: "weekly=weekly",
+      subs: "dailyAndWeekly",
+    },
+    {
+      name: "Monthly",
+      route: "monthly=monthly",
+      subs: "monthly",
+    },
+  ];
