@@ -49,9 +49,7 @@ export const socialMediaLinks = [
 
   export const legal = [
     "Terms & Conditions",
-    "Cookies Policy",
     "Privacy Policy",
-    "Feedback",
   ];
 
   export const scrollToSection = (sectionId: any) => {
@@ -70,7 +68,6 @@ export const socialMediaLinks = [
     { label: "Home", sectionId: "mainNavbar" },
     { label: "Service", sectionId: "carWithCategoryID" },
     { label: "About Us", sectionId: "company_overview" },
-    { label: "Vehicle", sectionId: "carWithBrandID" },
     { label: "FAQs", sectionId: "accordion" },
   ];
 
