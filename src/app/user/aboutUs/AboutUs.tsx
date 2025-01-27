@@ -137,166 +137,169 @@ const AboutUs = () => {
 
   return (
     <>
-      <NavFooter />
-      <Box sx={styles.box}>
-        <Container maxWidth="lg">
-          <Box>
-            <Typography variant="h4" gutterBottom sx={styles.typography}>
-              About INJAZ RENT A CAR
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              gutterBottom
-              sx={styles.typography2}
-            >
-              <b>INJAZ Rental Cars</b> premier car rental service in united Arab
-              Emirates Started Rent A Car business in 2016 based in Abu Dhbai ,
-              catering to both <b>individuals</b> and <b>corporate clients</b>{" "}
-              with flexible short-term and long-term rental plans. With a fleet
-              exceeding <b>70 models</b> spanning <b>1000+ car brands</b>, we
-              provide a wide variety of vehicles,{" "}
-              <b>including hatchbacks, sedans, compacts, SUVs & luxury Cars</b>{" "}
-              tailored to meet diverse client needs.
-            </Typography>
-          </Box>
-          <Box sx={styles.box}>
-            <Typography variant="h5" gutterBottom sx={styles.typography5}>
-              Our Core Values
-            </Typography>
-            {coreValues.map((item, index) => (
-              <>
-                <Box sx={styles.box2}>
-                  <Typography
-                    variant="subtitle1"
-                    gutterBottom
-                    key={index}
-                    sx={styles.typography3}
-                  >
-                    {item.heading}
-                  </Typography>
-                  {item.points.map((item, index) => (
+      <NavFooter footer={true}>
+        <Box sx={styles.box}>
+          <Container maxWidth="lg">
+            <Box>
+              <Typography variant="h4" gutterBottom sx={styles.typography}>
+                About INJAZ RENT A CAR
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                gutterBottom
+                sx={styles.typography2}
+              >
+                <b>INJAZ Rental Cars</b> premier car rental service in united
+                Arab Emirates Started Rent A Car business in 2016 based in Abu
+                Dhbai , catering to both <b>individuals</b> and{" "}
+                <b>corporate clients</b> with flexible short-term and long-term
+                rental plans. With a fleet exceeding <b>70 models</b> spanning{" "}
+                <b>1000+ car brands</b>, we provide a wide variety of vehicles,{" "}
+                <b>
+                  including hatchbacks, sedans, compacts, SUVs & luxury Cars
+                </b>{" "}
+                tailored to meet diverse client needs.
+              </Typography>
+            </Box>
+            <Box sx={styles.box}>
+              <Typography variant="h5" gutterBottom sx={styles.typography5}>
+                Our Core Values
+              </Typography>
+              {coreValues.map((item, index) => (
+                <>
+                  <Box sx={styles.box2}>
                     <Typography
-                      key={index}
-                      variant="subtitle2"
+                      variant="subtitle1"
                       gutterBottom
-                      sx={styles.typography4}
+                      key={index}
+                      sx={styles.typography3}
                     >
-                      <ArrowRightAltIcon sx={styles.icon} />
-                      {item}
+                      {item.heading}
                     </Typography>
-                  ))}
-                </Box>
-              </>
-            ))}
-          </Box>
-          <Box sx={styles.box}>
-            <Typography variant="h5" color="initial" sx={styles.typography5}>
-              Our Fleet
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              gutterBottom
-              sx={styles.typography6}
-            >
-              With a fleet featuring over 70 vehicle models from 1,000+ global
-              car brands, we provide an extensive range of options, including:
-            </Typography>
-            {ourFleet.map((item, index) => (
-              <Typography
-                variant="body1"
-                gutterBottom
-                key={index}
-                sx={styles.typography7}
-              >
-                <ArrowRightAltIcon sx={styles.icon} />
-                {item}
+                    {item.points.map((item, index) => (
+                      <Typography
+                        key={index}
+                        variant="subtitle2"
+                        gutterBottom
+                        sx={styles.typography4}
+                      >
+                        <ArrowRightAltIcon sx={styles.icon} />
+                        {item}
+                      </Typography>
+                    ))}
+                  </Box>
+                </>
+              ))}
+            </Box>
+            <Box sx={styles.box}>
+              <Typography variant="h5" color="initial" sx={styles.typography5}>
+                Our Fleet
               </Typography>
-            ))}
-            <Typography
-              variant="subtitle2"
-              gutterBottom
-              sx={styles.typography6}
-            >
-              This diversity ensures we can meet the unique needs of every
-              client, from practical everyday rentals to premium luxury
-              experiences.
-            </Typography>
-          </Box>
-          <Box sx={styles.box}>
-            <Typography variant="h5" color="initial" sx={styles.typography5}>
-              Our Vision
-            </Typography>
-            {ourVision.map((item, index) => (
               <Typography
-                key={index}
                 variant="subtitle1"
                 gutterBottom
                 sx={styles.typography6}
               >
-                {item}
+                With a fleet featuring over 70 vehicle models from 1,000+ global
+                car brands, we provide an extensive range of options, including:
               </Typography>
-            ))}
-          </Box>
-          <Box sx={styles.box}>
-            <Typography variant="h5" color="initial" sx={styles.typography5}>
-              Our Mission
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              gutterBottom
-              sx={styles.typography6}
-            >
-              Our goal is to create a customer-centric environment where clients
-              feel comfortable and valued. Whether you need a compact hatchback
-              for daily commutes, a stylish sedan for business travel, or a
-              robust SUV for off-road adventures, INJAZ Rental Cars ensures you
-              get a vehicle that matches your needs while prioritizing safety
-              and regular maintenance.
-            </Typography>
-          </Box>
-          <Box sx={styles.box}>
-            <Typography variant="h5" color="initial" sx={styles.typography5}>
-              Why Choose INJAZ Rental Cars?
-            </Typography>
-            {whyChoose.map((item, index) => (
+              {ourFleet.map((item, index) => (
+                <Typography
+                  variant="body1"
+                  gutterBottom
+                  key={index}
+                  sx={styles.typography7}
+                >
+                  <ArrowRightAltIcon sx={styles.icon} />
+                  {item}
+                </Typography>
+              ))}
               <Typography
-                key={index}
-                variant="subtitle1"
+                variant="subtitle2"
                 gutterBottom
-                sx={styles.typography8}
+                sx={styles.typography6}
               >
-                <ArrowRightAltIcon sx={styles.icon} />
-                <b>{item.point}</b> {item.content}
+                This diversity ensures we can meet the unique needs of every
+                client, from practical everyday rentals to premium luxury
+                experiences.
               </Typography>
-            ))}
-            {whyChoosePara.map((item, index) => (
+            </Box>
+            <Box sx={styles.box}>
+              <Typography variant="h5" color="initial" sx={styles.typography5}>
+                Our Vision
+              </Typography>
+              {ourVision.map((item, index) => (
+                <Typography
+                  key={index}
+                  variant="subtitle1"
+                  gutterBottom
+                  sx={styles.typography6}
+                >
+                  {item}
+                </Typography>
+              ))}
+            </Box>
+            <Box sx={styles.box}>
+              <Typography variant="h5" color="initial" sx={styles.typography5}>
+                Our Mission
+              </Typography>
               <Typography
-                key={index}
                 variant="subtitle1"
                 gutterBottom
                 sx={styles.typography6}
               >
-                {item}
+                Our goal is to create a customer-centric environment where
+                clients feel comfortable and valued. Whether you need a compact
+                hatchback for daily commutes, a stylish sedan for business
+                travel, or a robust SUV for off-road adventures, INJAZ Rental
+                Cars ensures you get a vehicle that matches your needs while
+                prioritizing safety and regular maintenance.
               </Typography>
-            ))}
-          </Box>
-          <Box sx={styles.box}>
-            <Typography variant="h5" color="initial" sx={styles.typography5}>
-              Your Partner in Mobility
-            </Typography>
-            {mobility.map((item, index) => (
-              <Typography
-                key={index}
-                variant="subtitle1"
-                gutterBottom
-                sx={styles.typography6}
-              >
-                {item}
+            </Box>
+            <Box sx={styles.box}>
+              <Typography variant="h5" color="initial" sx={styles.typography5}>
+                Why Choose INJAZ Rental Cars?
               </Typography>
-            ))}
-          </Box>
-        </Container>
-      </Box>
+              {whyChoose.map((item, index) => (
+                <Typography
+                  key={index}
+                  variant="subtitle1"
+                  gutterBottom
+                  sx={styles.typography8}
+                >
+                  <ArrowRightAltIcon sx={styles.icon} />
+                  <b>{item.point}</b> {item.content}
+                </Typography>
+              ))}
+              {whyChoosePara.map((item, index) => (
+                <Typography
+                  key={index}
+                  variant="subtitle1"
+                  gutterBottom
+                  sx={styles.typography6}
+                >
+                  {item}
+                </Typography>
+              ))}
+            </Box>
+            <Box sx={styles.box}>
+              <Typography variant="h5" color="initial" sx={styles.typography5}>
+                Your Partner in Mobility
+              </Typography>
+              {mobility.map((item, index) => (
+                <Typography
+                  key={index}
+                  variant="subtitle1"
+                  gutterBottom
+                  sx={styles.typography6}
+                >
+                  {item}
+                </Typography>
+              ))}
+            </Box>
+          </Container>
+        </Box>
+      </NavFooter>
     </>
   );
 };

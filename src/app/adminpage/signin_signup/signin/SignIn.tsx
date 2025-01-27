@@ -100,86 +100,86 @@ const SignIn: React.FC = () => {
 
   return (
     <>
-    <NavFooter />
-    <div className="enquiry_form" style={{ height: "90vh" }}>
-      <Container sx={{ paddingTop: "8%" }} maxWidth="xs">
-        <Typography sx={{ textAlign: "center" }} variant="h4" gutterBottom>
-          Sign In
-        </Typography>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Controller
-            name="email"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Email"
-                variant="outlined"
-                size="small"
-                fullWidth
-                margin="normal"
-                {...register("email", {
-                  required: "true",
-                  pattern: /^\S+@\S+.\S+$/i,
-                })}
-                error={!!errors.email}
-                helperText={errors.email && "Enter a valid email"}
-              />
-            )}
-          />
-          <Controller
-            name="password"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <TextField
-                {...field}
-                type={showPassword ? "text" : "password"}
-                label="Password"
-                variant="outlined"
-                fullWidth
-                size="small"
-                margin="normal"
-                {...register("password", { required: true })}
-                error={!!errors.password}
-                helperText={errors.password && "Enter valid password"}
-                InputProps={{
-                  // <-- This is where the toggle button is added.
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {showPassword ? (
-                          <VisibilityIcon />
-                        ) : (
-                          <VisibilityOffIcon />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            )}
-          />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+      <NavFooter />
+      <div className="enquiry_form">
+        <Container sx={{ paddingTop: "8%" }} maxWidth="xs">
+          <Typography sx={{ textAlign: "center" }} variant="h4" gutterBottom>
             Sign In
-          </Button>
-          <Button
-            sx={{ marginTop: "10px" }}
-            variant="contained"
-            color="success"
-            fullWidth
-            onClick={() => router.push("/pages/signup")}
-          >
-            Create a new Account
-          </Button>
-        </form>
-      </Container>
-    </div>
+          </Typography>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Controller
+              name="email"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label="Email"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  margin="normal"
+                  {...register("email", {
+                    required: "true",
+                    pattern: /^\S+@\S+.\S+$/i,
+                  })}
+                  error={!!errors.email}
+                  helperText={errors.email && "Enter a valid email"}
+                />
+              )}
+            />
+            <Controller
+              name="password"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  type={showPassword ? "text" : "password"}
+                  label="Password"
+                  variant="outlined"
+                  fullWidth
+                  size="small"
+                  margin="normal"
+                  {...register("password", { required: true })}
+                  error={!!errors.password}
+                  helperText={errors.password && "Enter valid password"}
+                  InputProps={{
+                    // <-- This is where the toggle button is added.
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                        >
+                          {showPassword ? (
+                            <VisibilityIcon />
+                          ) : (
+                            <VisibilityOffIcon />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              )}
+            />
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Sign In
+            </Button>
+            <Button
+              sx={{ marginTop: "10px" }}
+              variant="contained"
+              color="success"
+              fullWidth
+              onClick={() => router.push("/pages/signup")}
+            >
+              Create a new Account
+            </Button>
+          </form>
+        </Container>
+      </div>
     </>
   );
 };
