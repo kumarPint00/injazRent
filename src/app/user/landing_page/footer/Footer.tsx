@@ -2,13 +2,7 @@
 import { CardActionArea, CardMedia, Container, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "../footer/footer.css";
-import {
-  cities,
-  legal,
-  menuItems,
-  scrollToSection,
-  socialMediaLinks,
-} from "./data";
+import { dailyWeeklyButton, legal, menuItems, scrollToSection, socialMediaLinks } from "./data";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -19,14 +13,17 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ data }) => {
   const router = useRouter();
+
   const handlePhoneClick = () => {
     window.open(`tel:${data?.phoneNumber}`, "_blank");
   };
+
   const handleMailClick = () => {
     (window.location.href = `mailto:${data?.email}`), "_blank";
   };
 
   const [cat, setCat] = useState([]);
+
   useEffect(() => {
     axios
       .get(serverUrl + "/user/getAllCategoryes")
@@ -37,6 +34,9 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
         console.log(err, "error");
       });
   }, []);
+
+  
+
   return (
     <section id="footer" className="footer">
       <Container maxWidth="xl">
@@ -89,14 +89,15 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
           </Grid>
           <Grid item xs={12} sm={2.4} md={2.4} lg={2.4}>
             <div className="link_two">
-              <h4>CATEGORIES</h4>
+              <h4>SUBSCRIPTION</h4>
               <ul>
-                {cat.map((item:any, index) => (
+                {dailyWeeklyButton.map((item: any, index) => (
                   <li
                     key={index}
-                    onClick={() =>
-                      router.push(`/pages/carWithLocation?category=${item.name}`)
-                    }
+                    onClick={() => {
+                      sessionStorage.setItem("subscription", item.subs);
+                      router.push(`/pages/carWithLocation?${item.route}`);
+                    }}
                   >
                     {item.name}
                   </li>
