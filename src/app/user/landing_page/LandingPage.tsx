@@ -6,7 +6,6 @@ import ReqDocs from "./req_docs/ReqDocs";
 import CustomizedAccordions from "./accordion/CustomizedAccordions";
 import CarouselComponent from "./car_slider/HeroSlider";
 import CompanyOverview from "./compoverview/CompanyOverview";
-import Testimonials from "./testimonials/Testimonials";
 import WhyChooseUs from "./why_choose-us/WhyChooseUs";
 import HowItWorks from "./how-it-works/HowItWorks";
 import { serverUrl } from "../../../utils/helper";
@@ -51,7 +50,6 @@ const LandingPage = () => {
           <CarContent phoneData={phoneemail} data={cars}/>
         </div>
         <ReqDocs />
-        <Testimonials />
         <CompanyOverview />
         <WhyChooseUs />
         <HowItWorks />

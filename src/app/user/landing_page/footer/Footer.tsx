@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
 import { Box, CardActionArea, CardMedia, Container, Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import "../footer/footer.css";
 import {
-  cities,
+  dailyWeeklyButton,
   legal,
   menuItems,
   scrollToSection,
@@ -11,18 +11,36 @@ import {
 } from "./data";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { serverUrl } from "@/utils/helper";
 interface FooterProps {
   data: any;
 }
 
 const Footer: React.FC<FooterProps> = ({ data }) => {
   const router = useRouter();
+
   const handlePhoneClick = () => {
     window.open(`tel:${data?.phoneNumber}`, "_blank");
   };
+
   const handleMailClick = () => {
     (window.location.href = `mailto:${data?.email}`), "_blank";
   };
+
+  const [cat, setCat] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(serverUrl + "/user/getAllCategoryes")
+      .then((res) => {
+        setCat(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+  }, []);
+
   return (
     <section id="footer" className="footer">
       <Container maxWidth="xl">
@@ -80,16 +98,17 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
           </Grid>
           <Grid item xs={12} sm={2.4} md={2.4} lg={2.4}>
             <div className="link_two">
-              <h4>TOP CITIES</h4>
+              <h4>SUBSCRIPTION</h4>
               <ul>
-                {cities.map((item, index) => (
+                {dailyWeeklyButton.map((item: any, index) => (
                   <li
                     key={index}
-                    onClick={() =>
-                      router.push(`/pages/carWithLocation?location=${item}`)
-                    }
+                    onClick={() => {
+                      sessionStorage.setItem("subscription", item.subs);
+                      router.push(`/pages/carWithLocation?${item.route}`);
+                    }}
                   >
-                    {item}
+                    {item.name}
                   </li>
                 ))}
               </ul>
@@ -105,6 +124,9 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
                     onClick={() => {
                       if (item === "Terms & Conditions") {
                         router.push("/pages/termsAndcondition");
+                      }
+                      if (item === "Privacy Policy") {
+                        router.push("/pages/privacyPolicy");
                       }
                     }}
                   >
