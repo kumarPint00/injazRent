@@ -1,9 +1,9 @@
 "use client";
-import { CardActionArea, CardMedia, Container, Grid } from "@mui/material";
-import React from "react";
+import { Box, CardActionArea, CardMedia, Container, Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import "../footer/footer.css";
 import {
-  cities,
+  dailyWeeklyButton,
   legal,
   menuItems,
   scrollToSection,
@@ -11,18 +11,36 @@ import {
 } from "./data";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { serverUrl } from "@/utils/helper";
 interface FooterProps {
   data: any;
 }
 
 const Footer: React.FC<FooterProps> = ({ data }) => {
   const router = useRouter();
+
   const handlePhoneClick = () => {
     window.open(`tel:${data?.phoneNumber}`, "_blank");
   };
+
   const handleMailClick = () => {
     (window.location.href = `mailto:${data?.email}`), "_blank";
   };
+
+  const [cat, setCat] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(serverUrl + "/user/getAllCategoryes")
+      .then((res) => {
+        setCat(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      });
+  }, []);
+
   return (
     <section id="footer" className="footer">
       <Container maxWidth="xl">
@@ -37,18 +55,23 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
               />
             </CardActionArea>
             <p className="foot_text">
-              INJAZ is the first-ever global car rental and leasing marketplace.
-              We work with 200+ local car rental companies in Dubai. You can
-              choose among their 2000+ verified cars to find the best rental car
-              for you.
+              INJAZ RENT A CAR can sometimes seem overwhelming with its numerous
+              considerations. At Quick Lease Car Rentals, we aim to eliminate
+              the confusion by offering a simple and hassle-free leasing
+              process.
             </p>
             <div className="foot_icons">
               <Grid container>
-                {socialMediaLinks.map((item, index) => (
-                  <Grid key={index} item xs={2.4} sm={2.4} md={2.4} lg={2.4}>
-                    <img src={item.src} alt={item.alt} onClick={item.onClick} />
-                  </Grid>
-                ))}
+                <Box className="footer_social_media_images">
+                  {socialMediaLinks.map((item, index) => (
+                    <img
+                      key={index}
+                      src={item.src}
+                      alt={item.alt}
+                      onClick={item.onClick}
+                    />
+                  ))}
+                </Box>
               </Grid>
             </div>
           </Grid>
@@ -75,14 +98,18 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
           </Grid>
           <Grid item xs={12} sm={2.4} md={2.4} lg={2.4}>
             <div className="link_two">
-              <h4>TOP CITIES</h4>
+              <h4>SUBSCRIPTION</h4>
               <ul>
-                {cities.map((item, index) => (
-                  <li key={index} onClick={() =>
-                    router.push(
-                      `/pages/carWithLocation?location=${item}`
-                    )
-                  }>{item}</li>
+                {dailyWeeklyButton.map((item: any, index) => (
+                  <li
+                    key={index}
+                    onClick={() => {
+                      sessionStorage.setItem("subscription", item.subs);
+                      router.push(`/pages/carWithLocation?${item.route}`);
+                    }}
+                  >
+                    {item.name}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -92,11 +119,19 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
               <h4>LEGAL</h4>
               <ul>
                 {legal.map((item, index) => (
-                  <li key={index} onClick={() => {
-                    if (item === "Terms & Conditions") {
-                      router.push("/pages/termsAndcondition");
-                    }
-                  }}>{item}</li>
+                  <li
+                    key={index}
+                    onClick={() => {
+                      if (item === "Terms & Conditions") {
+                        router.push("/pages/termsAndcondition");
+                      }
+                      if (item === "Privacy Policy") {
+                        router.push("/pages/privacyPolicy");
+                      }
+                    }}
+                  >
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>

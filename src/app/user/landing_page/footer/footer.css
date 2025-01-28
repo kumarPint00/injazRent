@@ -12,6 +12,13 @@ p.foot_text {
     font-family: sans-serif !important;
 }
 
+.footer_social_media_images {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
 .foot_icons {
     text-align: center !important;
 }
