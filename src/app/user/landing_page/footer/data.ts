@@ -63,7 +63,8 @@ export const socialMediaLinks = [
   export const menuItems: MenuItem[] = [
     { label: "Home", sectionId: "mainNavbar" },
     { label: "Service", sectionId: "carWithCategoryID" },
-    { label: "About Us", sectionId: "company_overview" },
+    { label: "About Us", sectionId: "about_us" },
+    { label: "Contact Us", sectionId: "contact_us" },
     { label: "FAQs", sectionId: "accordion" },
   ];
 

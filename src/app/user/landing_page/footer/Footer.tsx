@@ -1,5 +1,5 @@
 "use client";
-import { Box, CardActionArea, CardMedia, Container, Grid } from "@mui/material";
+import { Box, CardActionArea, Container, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "../footer/footer.css";
 import {
@@ -85,6 +85,9 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
                     onClick={() => {
                       if (item.label === "About Us") {
                         router.push("/pages/aboutUs");
+                      }
+                      if (item.label === "Contact Us") {
+                        router.push("/pages/contactUs");
                       } else if (item.sectionId) {
                         scrollToSection(item.sectionId);
                       }
