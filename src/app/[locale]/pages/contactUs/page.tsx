@@ -1,7 +1,7 @@
 import React from "react";
-import PrivacyPolicy from "@/app/user/privacyPolicy/PrivacyPolicy";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationsProvider";
+import ContactUs from "@/app/user/contactUs/ContactUs";
 
 const i18nNamespaces = ["landingPage"];
 
@@ -13,7 +13,7 @@ const page = async ({ params: { locale } }: any) => {
       locale={locale}
       resources={resources}
     >
-      <PrivacyPolicy />
+      <ContactUs />
     </TranslationsProvider>
   );
 };
