@@ -88,7 +88,9 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
                       }
                       if (item.label === "Contact Us") {
                         router.push("/pages/contactUs");
-                      } else if (item.sectionId) {
+                      } if (item.label === "FAQs"){
+                        router.push("/pages/newFaq");
+                      }else if (item.sectionId) {
                         scrollToSection(item.sectionId);
                       }
                     }}
