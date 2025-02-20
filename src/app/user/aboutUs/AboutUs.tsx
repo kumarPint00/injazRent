@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import NavFooter from "@/utils/Na_Fo";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import Link from "next/link";
 
 const styles: any = {
   box: {
@@ -149,16 +150,76 @@ const AboutUs = () => {
                 gutterBottom
                 sx={styles.typography2}
               >
-                <b>INJAZ Rental Cars</b> premier car rental service in united
-                Arab Emirates Started Rent A Car business in 2016 based in Abu
-                Dhbai , catering to both <b>individuals</b> and{" "}
-                <b>corporate clients</b> with flexible short-term and long-term
-                rental plans. With a fleet exceeding <b>70 models</b> spanning{" "}
-                <b>1000+ car brands</b>, we provide a wide variety of vehicles,{" "}
-                <b>
-                  including hatchbacks, sedans, compacts, SUVs & luxury Cars
-                </b>{" "}
-                tailored to meet diverse client needs.
+                <Link href="/" style={{ color: "#01437d" }}>
+                  INJAZ RENTAL CARS
+                </Link>{" "}
+                premier car rental service in united Arab Emirates Started Rent
+                A Car business in 2016 based in Abu Dhbai , catering to both{" "}
+                individuals and corporate clients with flexible{" "}
+                <Link
+                  href="/pages/carWithLocation/?daily=daily"
+                  style={{ color: "#01437d" }}
+                >
+                  SHORT-TERM
+                </Link>{" "}
+                and{" "}
+                <Link
+                  href="/pages/carWithLocation/?monthly=monthly"
+                  style={{ color: "#01437d" }}
+                >
+                  LONG-TERM
+                </Link>{" "}
+                rental plans. With a fleet exceeding 70 models spanning 1000+
+                car brands, we provide a wide variety of vehicles, including{" "}
+                <Link
+                  href="/pages/carWithLocation/?category=ECONOMY"
+                  style={{ color: "#01437d" }}
+                >
+                  ECONOMY
+                </Link>
+                ,{" "}
+                <Link
+                  href="/pages/carWithLocation/?category=HATCHBACK"
+                  style={{ color: "#01437d" }}
+                >
+                  HATCHBACK
+                </Link>
+                ,{" "}
+                <Link
+                  href="/pages/carWithLocation/?category=SUV"
+                  style={{ color: "#01437d" }}
+                >
+                  SUV
+                </Link>
+                ,{" "}
+                <Link
+                  href="/pages/carWithLocation/?category=SEDAN"
+                  style={{ color: "#01437d" }}
+                >
+                  SEDAN
+                </Link>
+                ,{" "}
+                <Link
+                  href="/pages/carWithLocation/?category=COMPACT"
+                  style={{ color: "#01437d" }}
+                >
+                  COMPACT
+                </Link>
+                ,{" "}
+                <Link
+                  href="/pages/carWithLocation/?category=LUXURY"
+                  style={{ color: "#01437d" }}
+                >
+                  LUXURY
+                </Link>
+                ,{" "}
+                <Link
+                  href="/pages/carWithLocation/?category=CROSSOVER"
+                  style={{ color: "#01437d" }}
+                >
+                  CROSSOVER
+                </Link>{" "}
+                Cars tailored to meet diverse client needs.
               </Typography>
             </Box>
             <Box sx={styles.box}>
