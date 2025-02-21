@@ -50,6 +50,13 @@ const CarContent: React.FC<CarContentType> = ({ data = [], phoneData }) => {
     const whatsappLink = `https://wa.me/${
       phoneData?.phoneNumber
     }?text=${encodeURIComponent(whatsappMessage)}`;
+    if (window.gtag) {
+      window.gtag("event", "whatsapp_click", {
+        event_category: "User Interaction",
+        event_label: "WhatsApp Contact",
+        value: phoneData?._id,
+      });
+    }
     window.open(whatsappLink);
   };
 
@@ -57,7 +64,7 @@ const CarContent: React.FC<CarContentType> = ({ data = [], phoneData }) => {
     <div className="car_offers">
       <Container maxWidth="lg">
         {!loader ? (
-          <Grid container spacing={6} sx={{justifyContent: 'center'}}>
+          <Grid container spacing={6} sx={{ justifyContent: "center" }}>
             {data.map((car: any) => (
               <Grid
                 item
