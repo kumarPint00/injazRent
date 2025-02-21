@@ -133,6 +133,13 @@ const CarWithLocation = () => {
     const whatsappLink = `https://wa.me/${
       phoneData?.phoneNumber
     }?text=${encodeURIComponent(whatsappMessage)}`;
+    if (window.gtag) {
+      window.gtag("event", "whatsapp_click", {
+        event_category: "User Interaction",
+        event_label: "WhatsApp Contact",
+        value: phoneData?._id,
+      });
+    }
     window.open(whatsappLink);
   };
 

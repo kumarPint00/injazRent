@@ -100,6 +100,13 @@ function Navlinks(props: Props) {
     const message = encodeURIComponent(
       "Hi, \nI’m contacting you through Injazrent.ae. \nI’d like to rent the car on Daily, Weekly and Monthly packages. \nIs it available?"
     );
+    if (window.gtag) {
+      window.gtag("event", "whatsapp_click", {
+        event_category: "User Interaction",
+        event_label: "WhatsApp Contact",
+        value: data?._id,
+      });
+    }
     window.open(`https://wa.me/${data?.phoneNumber}?text=${message}`, "_blank");
   };
 
