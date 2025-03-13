@@ -98,7 +98,15 @@ const AboutUs = () => {
     },
   ];
 
-  const ourFleet = ["Hatchbacks", "Sedans", "Compacts", "SUVs", "Luxury Cars"];
+  const ourFleet = [
+    { text: "Hatchback Cars", route: "HATCHBACK" },
+    { text: "Sedan Cars", route: "SEDAN" },
+    { text: "Compact Cars", route: "COMPACT" },
+    { text: "SUV Cars", route: "SUV" },
+    { text: "Luxury Cars", route: "LUXURY" },
+    { text: "Crossover Cars", route: "CROSSOVER" },
+    { text: "Economy Cars", route: "ECONOMY" },
+  ];
 
   const ourVision = [
     "To be the go-to car rental service in the UAE by delivering trust, quality, and flexibility, backed by a diverse fleet and exceptional customer care.",
@@ -237,7 +245,7 @@ const AboutUs = () => {
                     >
                       {item.heading}
                     </Typography>
-                    {item.points.map((item, index) => (
+                    {item.points.map((item: any, index) => (
                       <Typography
                         key={index}
                         variant="subtitle2"
@@ -272,7 +280,12 @@ const AboutUs = () => {
                   sx={styles.typography7}
                 >
                   <ArrowRightAltIcon sx={styles.icon} />
-                  {item}
+                  <Link
+                    href={`/pages/carWithLocation/?category=${item.route}`}
+                    style={{ color: "#01437d" }}
+                  >
+                    {item.text}
+                  </Link>
                 </Typography>
               ))}
               <Typography
