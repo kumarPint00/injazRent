@@ -111,7 +111,9 @@ const AboutUs = () => {
   const ourVision = [
     "To be the go-to car rental service in the UAE by delivering trust, quality, and flexibility, backed by a diverse fleet and exceptional customer care.",
     "Whether you're seeking a budget-friendly ride for personal use or a luxury vehicle for business needs, INJAZ Rental Cars guarantees a seamless and reliable experience.",
-    "Drive with Confidence. Rent with INJAZ!",
+    <>
+      Drive with Confidence. Rent with <Link href="/">INJAZ</Link> Website!
+    </>,
   ];
 
   const whyChoose = [
