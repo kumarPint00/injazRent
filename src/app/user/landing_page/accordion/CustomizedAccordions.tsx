@@ -11,6 +11,7 @@ import { Container, Typography, styled } from "@mui/material";
 import axios from "axios";
 import Loader from "@/app/Loader";
 import { serverUrl } from "@/utils/helper";
+import Link from "next/link";
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -51,8 +52,6 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
-const serverAPI = "https://api.injazrent.ae";
-const localAPI = "http://localhost:4000";
 
 export default function CustomizedAccordions() {
   const [expanded, setExpanded] = React.useState<string | false>("panel0");
@@ -64,24 +63,36 @@ export default function CustomizedAccordions() {
   ) => {
     setExpanded(newExpanded ? panel : false);
   };
+
   const [faqData, setFaqData] = useState([]);
+
   useEffect(() => {
-    axios
-      .get(serverUrl + "/user/getAllFAQS")
-      .then((res) => {
+    const getAllFaqs = async () => {
+      try {
+        const res = await axios.get(serverUrl + "/user/getAllFAQS");
         setFaqData(res.data.data);
         setLoader(false);
-      })
-      .catch((err) => {
-        console.log(err, "error");
-      });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getAllFaqs();
   }, []);
 
   return (
     <section id="accordion" className="accordion">
       <Container maxWidth="xl">
         <div className="faq_head">
-          <h3>Frequently Asked Questions</h3>
+          <h3>
+            Frequently Asked{" "}
+            <Link
+              href="/pages/newFaq/"
+              style={{ color: "#01437d", textDecoration: "none" }}
+            >
+              Questions
+            </Link>
+          </h3>
         </div>
         {!loader ? (
           <section>

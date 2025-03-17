@@ -1,6 +1,6 @@
 "use client";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import RecipeReviewCard from "./car-cards/RecipeReviewCard";
 import ReqDocs from "./req_docs/ReqDocs";
 import CustomizedAccordions from "./accordion/CustomizedAccordions";
@@ -17,28 +17,31 @@ const LandingPage = () => {
   const [phoneemail, setPhoneEmail] = useState({});
 
   useEffect(() => {
-    axios
-      .get(serverUrl + "/user/getAllCars")
-      .then((res) => {
+    const getAllCars = async () => {
+      try {
+        const res = await axios.get(serverUrl + "/user/getAllCars");
         const newData = res.data.data?.filter(
           (item: any) =>
             item.status === "Active" && item.isOfferApplied !== "Yes"
         );
         setCars(newData);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.log(err);
-      });
+      }
+    };
 
-    axios
-      .get(serverUrl + "/admin/getAllsettings")
-      .then((res) => {
+    const getSettings = async () => {
+      try {
+        const res = await axios.get(serverUrl + "/admin/getAllsettings");
         setPhoneEmail(res.data.data[0]);
         console.log(res.data.data[0], "phoneEmail");
-      })
-      .catch((err) => {
-        console.log(err, "...error");
-      });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getAllCars();
+    getSettings();
   }, []);
 
   return (
@@ -47,7 +50,7 @@ const LandingPage = () => {
         <CarouselComponent />
         <RecipeReviewCard />
         <div className="carsCardsSection">
-          <CarContent phoneData={phoneemail} data={cars}/>
+          <CarContent phoneData={phoneemail} data={cars} />
         </div>
         <ReqDocs />
         <CompanyOverview />

@@ -3,6 +3,7 @@ import { Container } from "@mui/material";
 import React from "react";
 import "../why_choose-us/WhyChooseUs.css";
 import { boxData, sectionData } from "./data";
+import Image from "next/image";
 
 const WhyChooseUs = () => {
   return (
@@ -23,7 +24,13 @@ const WhyChooseUs = () => {
               <h5>{item.heading}</h5>
             </div>
             <div className="whyBoxImg">
-              <img src={item.src} alt={item.heading} />
+              <Image
+                src={item.src}
+                alt={item.heading}
+                width={200}
+                height={175}
+                loading="lazy"
+              />
             </div>
             <div className="whyBoxPara">
               <p>{item.para}</p>
