@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -9,6 +9,7 @@ import { Container, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { carCategories } from "./data";
+import Link from "next/link";
 
 const CarCard = styled(Card)(({ theme }) => ({
   maxWidth: 345,
@@ -21,7 +22,23 @@ export default function RecipeReviewCard() {
     <div className="card_section" id="carWithCategoryID">
       <Container maxWidth="xl">
         <div className="card_heading">
-          <h1>Discover Top Car Rental Services in Abu Dhabi & Dubai</h1>
+          <h1>
+            Discover Top Car Rental Services in{" "}
+            <Link
+              href="/pages/carWithLocation/?locaNametion=Abu Dhabi"
+              style={{ color: "#01437d", textDecoration: "none" }}
+            >
+              Abu Dhabi
+            </Link>{" "}
+            &{" "}
+            <Link
+              href="/pages/carWithLocation/?locaNametion=Dubai"
+              style={{ color: "#01437d", textDecoration: "none" }}
+            >
+              Dubai
+            </Link>
+          </h1>
+          <h2>Commission-free car rental services across Dubai & Abu Dhabi.</h2>
         </div>
 
         <Grid
@@ -36,9 +53,7 @@ export default function RecipeReviewCard() {
               <CarCard
                 className={car.class}
                 onClick={() =>
-                  router.push(
-                    `/pages/carWithCategory?category=${car.category}`
-                  )
+                  router.push(`/pages/carWithCategory?category=${car.category}`)
                 }
               >
                 <CardContent>
@@ -53,6 +68,7 @@ export default function RecipeReviewCard() {
                 <Image
                   src={car.src}
                   alt="carTwo.gif"
+                  loading="lazy"
                   sizes="100vw"
                   style={{
                     width: "100%",
@@ -63,20 +79,6 @@ export default function RecipeReviewCard() {
             </Grid>
           ))}
         </Grid>
-        {/*<div className="car_des_con">
-          <p>
-            Done with the endless hunt for a <b>rental car nearby</b>? Look no
-            further! Welcome to <b>injazrent.ae</b>, your go-to destination for
-            hassle-free <b>car rentals</b> in <b>Abu Dhabi</b> & <b>Dubai</b>.
-            As a premier car rental platform, we showcase an extensive range of
-            budget-friendly rental options sourced from reputable car hire
-            providers across the UAE. Explore our diverse selection of over 2000
-            vehicles, carefully curated by trusted rental businesses in the
-            region. Whether you are a visitor seeking temporary transportation
-            or a resident in need of a long-term solution, we guarantee the most
-            competitive rates, starting as low as <b>AED 49 per day</b>.
-          </p>
-        </div> */}
       </Container>
     </div>
   );

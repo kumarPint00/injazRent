@@ -1,6 +1,6 @@
 "use client";
+import React from "react";
 import { Box, CardActionArea, Container, Grid } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import "../footer/footer.css";
 import {
   dailyWeeklyButton,
@@ -11,8 +11,6 @@ import {
 } from "./data";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import axios from "axios";
-import { serverUrl } from "@/utils/helper";
 interface FooterProps {
   data: any;
 }
@@ -28,19 +26,6 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
     (window.location.href = `mailto:${data?.email}`), "_blank";
   };
 
-  const [cat, setCat] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(serverUrl + "/user/getAllCategoryes")
-      .then((res) => {
-        setCat(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err, "error");
-      });
-  }, []);
-
   return (
     <section id="footer" className="footer">
       <Container maxWidth="xl">
@@ -52,6 +37,7 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
                 alt="footer logo"
                 height={65}
                 width={235}
+                loading="lazy"
               />
             </CardActionArea>
             <p className="foot_text">

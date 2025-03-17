@@ -200,7 +200,12 @@ function Navbar(props: Props) {
         }}
         onClick={() => router.push("/")}
       >
-        <Image src={drawerLogo} alt="logo" className="drawerImg" />
+        <Image
+          src={drawerLogo}
+          alt="logo"
+          className="drawerImg"
+          loading="lazy"
+        />
       </Box>
       <Divider />
       {customCollapsibleListItemArray.map((item) => (
@@ -329,10 +334,12 @@ function Navbar(props: Props) {
               }}
               onClick={() => router.push("/")}
             >
-              <img
+              <Image
                 src="/injaz white colour logowebp.webp"
-                alt="logo"
-                className="navLogoIMG"
+                alt="appbar-logo"
+                height={56}
+                width={180}
+                loading="lazy"
               />
             </Typography>
             <Navlinks data={data} />
@@ -399,7 +406,7 @@ function Navbar(props: Props) {
                     },
                   },
                 }}
-                transformOrigin={{ horizontal: "center", vertical: "top" }} 
+                transformOrigin={{ horizontal: "center", vertical: "top" }}
                 anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
               >
                 <MenuItem
